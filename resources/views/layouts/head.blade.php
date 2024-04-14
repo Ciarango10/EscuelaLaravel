@@ -1,36 +1,49 @@
 <head>
     <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
 
     <title>Escuela</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <!-- Favicons -->
-    <link href="{{ asset('theme/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('theme/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset("theme/img/favicon/favicon.ico") }}"/>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="{{ asset("theme/vendor/fonts/boxicons.css") }}"/>
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="{{ asset("theme/vendor/css/core.css") }}" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{ asset("theme/vendor/css/theme-default.css") }}" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{ asset("theme/css/demo.css") }}" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="{{ asset("theme/vendor/libs/perfect-scrollbar/perfect-scrollbar.css") }}" />
+
+    <link rel="stylesheet" href="{{ asset("theme/vendor/libs/apex-charts/apex-charts.css") }}" />
+
+    <!-- Page CSS -->
+
+    <!-- Helpers -->
+    <script src="{{ asset("theme/vendor/js/helpers.js") }}"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="{{ asset("theme/js/config.js") }}"></script>
 
     <!-- Vendor CSS Files -->
     <link href="{{ asset('theme/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('theme/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('theme/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('theme/vendor/quill/quill.snow.css') }}" rel="stylesheet">
-    <link href="{{ asset('theme/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
-    <link href="{{ asset('theme/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
-    <link href="{{ asset('theme/vendor/simple-datatables/style.css') }}" rel="stylesheet">
 
-    <!-- Template Main CSS File -->
-    <link href="{{ asset('theme/css/style.css') }}" rel="stylesheet">
-
-    <!-- =======================================================
-    * Template Name: NiceAdmin
-    * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-    * Updated: Mar 17 2024 with Bootstrap v5.3.3
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
   </head>
