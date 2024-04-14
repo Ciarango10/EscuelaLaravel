@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Editar Profesor</h1>
+    <h1>Editar Profesor</h1>
 
     <form action="{{ route('teachers.update') }}"   method="POST">
     @csrf
@@ -21,4 +21,5 @@
         <button type="submit" class="btn btn-primary">Guardar</button>
 
     </form>
+    
 @endsection

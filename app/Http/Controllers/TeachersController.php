@@ -9,7 +9,7 @@ class TeachersController extends Controller
     public function index()
     {
         $teachers = Teacher ::all();
-       return view('teachers.index',['teachers'->$teachers]);
+       return view('teachers.index',['teachers'=>$teachers]);
     }
     
     public function create()
@@ -24,7 +24,11 @@ class TeachersController extends Controller
             $teacher = new Teacher();
             $teacher->first_name = $request->first_name;
             $teacher->last_name = $request->last_name;
-
+            $teacher->address = $request->address;
+            $teacher->phone = $request->phone;
+            $teacher->email = $request->email;
+            $teacher->birthdate = $request->birthdate;
+            
             $teacher->save();
             return redirect()->action([TeachersController::class, 'index']);
 
@@ -44,7 +48,7 @@ class TeachersController extends Controller
         }
 
 
-        return view('Teachers.edit', ['teacher' => $teacher]);
+        return view('teachers.edit', ['teacher' => $teacher]);
 
     }
     

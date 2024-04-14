@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('first_name',32);
             $table->string('last_name',32);
-            $table->string('direction',64);
+            $table->string('address',64);
             $table->string('phone',32);
             $table->string('email',32);
             $table->date('birthdate');
