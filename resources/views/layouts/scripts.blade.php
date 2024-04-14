@@ -1,12 +1,24 @@
-<!-- Vendor JS Files -->
-<script src="{{ asset('theme/vendor/apexcharts/apexcharts.min.js') }}"></script>
-<script src="{{ asset('theme/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('theme/vendor/chart.js/chart.umd.js') }}"></script>
-<script src="{{ asset('theme/vendor/echarts/echarts.min.js') }}"></script>
-<script src="{{ asset('theme/vendor/quill/quill.min.js') }}"></script>
-<script src="{{ asset('theme/vendor/simple-datatables/simple-datatables.js') }}"></script>
-<script src="{{ asset('theme/vendor/tinymce/tinymce.min.js') }}"></script>
-<script src="{{ asset('theme/vendor/php-email-form/validate.js') }}"></script>
+<!-- Core JS -->
+<!-- build:js assets/vendor/js/core.js -->
+<script src="{{ asset("theme/vendor/libs/jquery/jquery.js") }}"></script>
+<script src="{{ asset("theme/vendor/libs/popper/popper.js") }}"></script>
+<script src="{{ asset("theme/vendor/js/bootstrap.js") }}"></script>
+<script src="{{ asset("theme/vendor/libs/perfect-scrollbar/perfect-scrollbar.js") }}"></script>
+
+<script src="{{ asset("theme/vendor/js/menu.js") }}"></script>
+<!-- endbuild -->
+
+<!-- Vendors JS -->
+<script src="{{ asset("theme/vendor/libs/apex-charts/apexcharts.js") }}"></script>
+
+<!-- Main JS -->
+<script src="{{ asset("js/main.js") }}"></script>
+
+<!-- Page JS -->
+<script src="{{ asset("js/dashboards-analytics.js") }}"></script>
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <!-- Template Main JS File -->
 <script src="{{ asset('theme/js/main.js') }}"></script>
