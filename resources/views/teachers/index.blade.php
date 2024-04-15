@@ -31,7 +31,7 @@
                             <th> Apellidos </th>
                             <th> Email </th>
                             <th> Fecha de Nacimiento </th>
-                            <th> Direccion </th>
+                            <th> Dirección </th>
                             <th> Celular </th>
                         </tr>
                     </thead>

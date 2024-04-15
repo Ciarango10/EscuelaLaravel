@@ -77,7 +77,7 @@
 
             Swal.fire({
                 title: "¿Desea eliminar el estudiante?",
-                text: "No prodrá revertirlo",
+                text: "No podrá revertirlo",
                 icon: "question",
                 showCancelButton: true,
             }).then((result) => {
