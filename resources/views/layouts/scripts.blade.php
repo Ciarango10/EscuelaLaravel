@@ -23,8 +23,13 @@
 <!-- Template Main JS File -->
 <script src="{{ asset('theme/js/main.js') }}"></script>
 
+<!-- JQuery -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
+<!-- Fontawesome -->
+<script src="https://kit.fontawesome.com/c82bfcd167.js" crossorigin="anonymous"></script>
+
+<!-- SweetAlert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 @if ($errors->any())

@@ -2,55 +2,64 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-md-7">
-            <h1>Profesores</h1>
-        </div>
-        <div class="col-md-5">
-            <a href="{{ route('teachers.create') }}" class="btn btn-primary col-md-4 text-white">Nuevo Profesor<i class="fa fa-save"></i></a>
-        </div>
+    <div class="pagetitle">
+        <h1>Entidades</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
+                <li class="breadcrumb-item active">Profesores</li>
+            </ol>
+        </nav>
     </div>
 
-    <table class="table table-bordered mt-3">
-        <thead>
-                <th>Id</th>
-                <th>Nombres</th>
-                <th>Apellidos</th>
-                <th>Direccion</th>
-                <th>Telefono</th>
-                <th>Correo Electronico</th>
-                <th>Fecha de Nacimiento</th>
-                <th></th>
+    <section class="section dashboard"> 
+        <div class="card">
+            <div class="card-header py-3">
+                <div class="row">
+                    <h3 class="m-0 font-weight-bold text-primary col-md-11">Profesores</h3>
+                    <div class="col-md-1">
+                        <a href="{{ route('teachers.create') }}" class="btn btn-primary"><i class="fa fa-add"></i></a>
+                    </div>
+                </div>
+            </div>
 
-        </thead>
+            <div class="card-body">
+                <table class="table table-bordered mt-3">
+                    <thead>
+                        <tr>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Direccion</th>
+                            <th>Telefono</th>
+                            <th>Correo Electronico</th>
+                            <th>Fecha de Nacimiento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($teachers as $teacher)
+                            <tr>
+                                    <td>{{ $teacher->first_name }}</td>
+                                    <td>{{ $teacher->last_name }}</td>
+                                    <td>{{ $teacher->address}}</td>
+                                    <td>{{ $teacher->phone }}</td>
+                                    <td>{{ $teacher->email }}</td>
+                                    <td>{{ $teacher->birthdate }}</td>
+                                    <td>
+                                        <a href="{{ route('teachers.edit', $teacher->id) }}" class="btn btn-sm btn-warning"><i class="fa-solid fa-pencil"></i></a>
 
-        <tbody>
-            @foreach ($teachers as $teacher)
-                <tr>
-                    <td>{{ $teacher->id }}</td>
-                    <td>{{ $teacher->first_name }}</td>
-                    <td>{{ $teacher->last_name }}</td>
-                    <td>{{ $teacher->direction }}</td>
-                    <td>{{ $teacher->phone }}</td>
-                    <td>{{ $teacher->email }}</td>
-                    <td>{{ $teacher->birthdate }}</td>
-                    <td>
-                    <a href="{{ route('teachers.edit', $teacher->id) }}" class="btn btn-warning">Editar</a>
-                    </td>
-
-                <td>
-                    <form action="{{ route('teachers.delete', $teacher->id) }}"style="display:contents" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger btnDelete">Eliminar</button>
-                </td>    
-                </form>
-                </tr>
-            @endforeach
-        </tbody>
-        
-    </table>
-
+                                        <form action="{{ route('teachers.delete', $teacher->id) }}" style="display:contents" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger btn-sm btnDelete"><i class="fa-solid fa-trash"></i></button>
+                                        </form>
+                                    </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>        
 @endsection
 
 <script type="module">
