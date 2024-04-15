@@ -27,12 +27,12 @@
                     <input type="hidden" name="student_id" value="{{ $student->id }}">
                     <div class="col-md-12">
                         <div class="form-floating mb-3">
-                            <input name="first_name" id="first_name" class="form-control" placeholder="Nombre" value="{{ $student->first_name }}">
-                            <label for="first_name">Nombre</label>
+                            <input name="first_name" id="first_name" class="form-control" placeholder="Nombres" value="{{ $student->first_name }}">
+                            <label for="first_name">Nombres</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input name="last_name" id="last_name" class="form-control" placeholder="Apellido" value="{{ $student->last_name }}">
-                            <label for="last_name">Apellido</label>
+                            <input name="last_name" id="last_name" class="form-control" placeholder="Apellidos" value="{{ $student->last_name }}">
+                            <label for="last_name">Apellidos</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input name="email" type="email" id="email" class="form-control" placeholder="Email"  aria-describedby="emailHelp" value="{{ $student->email }}">

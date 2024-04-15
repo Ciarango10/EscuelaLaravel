@@ -27,33 +27,30 @@
                     <input type="hidden" name="teacher_id" value="{{ $teacher->id }}">
                     <div class="col-md-12">
                         <div class="form-floating mb-3">
-                            <input name="first_name" id="first_name" class="form-control" placeholder="Nombre" value="{{ $teacher->first_name }}">
-                            <label for="first_name">Nombre</label>
+                            <input name="first_name" id="first_name" class="form-control" placeholder="Nombres" value="{{ $teacher->first_name }}">
+                            <label for="first_name">Nombres</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input name="last_name" id="last_name" class="form-control" placeholder="Apellido" value="{{ $teacher->last_name }}">
-                            <label for="last_name">Apellido</label>
+                            <input name="last_name" id="last_name" class="form-control" placeholder="Apellidos" value="{{ $teacher->last_name }}">
+                            <label for="last_name">Apellidos</label>
                         </div>
                         <div class="form-floating mb-3">
-                                <input name="address" id="address" class="form-control" placeholder="Dirección" value="{{ $teacher->address }}">
-                                <label for="address">Dirección</label>
-                            </div>
-
-                            <div class="form-floating">
-                                <input name="phone" id="phone" class="form-control" placeholder="Celular" value="{{ $teacher->phone}}">
-                                <label for="phone">Celular</label>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input name="email" type="email" id="email" class="form-control" placeholder="Email"  aria-describedby="emailHelp" value="{{ $teacher->email }}">
-                                <label for="email">Email</label>
-                                <div id="emailHelp" class="form-text">No compartiremos tu email con nadie más.</div>
-                            </div>
-
-                            <div class="form-floating mb-3">
-                                <input type="date" name="birthdate" id="birthdate" class="form-control" placeholder="Fecha de Nacimiento" value="{{ $teacher->birthdate }}">
-                                <label for="birthdate">Fecha de Nacimiento</label>
-                            </div>
+                            <input name="email" type="email" id="email" class="form-control" placeholder="Email"  aria-describedby="emailHelp" value="{{ $teacher->email }}">
+                            <label for="email">Email</label>
+                            <div id="emailHelp" class="form-text">No compartiremos tu email con nadie más.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="date" name="birthdate" id="birthdate" class="form-control" placeholder="Fecha de Nacimiento" value="{{ $teacher->birthdate }}">
+                            <label for="birthdate">Fecha de Nacimiento</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input name="address" id="address" class="form-control" placeholder="Dirección" value="{{ $teacher->address }}">
+                            <label for="address">Dirección</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input name="phone" id="phone" class="form-control" placeholder="Celular" value="{{ $teacher->phone }}">
+                            <label for="phone">Celular</label>
+                        </div>
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary">Guardar</button>

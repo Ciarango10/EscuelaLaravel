@@ -27,39 +27,42 @@
                 <table class="table table-bordered mt-3">
                     <thead>
                         <tr>
-                            <th>Nombres</th>
-                            <th>Apellidos</th>
-                            <th>Direccion</th>
-                            <th>Telefono</th>
-                            <th>Correo Electronico</th>
-                            <th>Fecha de Nacimiento</th>
+                            <th> Nombres </th>
+                            <th> Apellidos </th>
+                            <th> Email </th>
+                            <th> Fecha de Nacimiento </th>
+                            <th> Direccion </th>
+                            <th> Celular </th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($teachers as $teacher)
+                        
                             <tr>
-                                    <td>{{ $teacher->first_name }}</td>
-                                    <td>{{ $teacher->last_name }}</td>
-                                    <td>{{ $teacher->address}}</td>
-                                    <td>{{ $teacher->phone }}</td>
-                                    <td>{{ $teacher->email }}</td>
-                                    <td>{{ $teacher->birthdate }}</td>
-                                    <td>
-                                        <a href="{{ route('teachers.edit', $teacher->id) }}" class="btn btn-sm btn-warning"><i class="fa-solid fa-pencil"></i></a>
+                                <td>{{ $teacher->first_name }}</td>
+                                <td>{{ $teacher->last_name }}</td>
+                                <td>{{ $teacher->email }}</td>
+                                <td>{{ $teacher->birthdate }}</td>
+                                <td>{{ $teacher->address }}</td>
+                                <td>{{ $teacher->phone }}</td>                             
+                                <td>
+                                    <a href="{{ route('teachers.edit', $teacher->id) }}" class="btn btn-sm btn-warning"><i class="fa-solid fa-pencil"></i></a>
 
-                                        <form action="{{ route('teachers.delete', $teacher->id) }}" style="display:contents" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-danger btn-sm btnDelete"><i class="fa-solid fa-trash"></i></button>
-                                        </form>
-                                    </td>
+                                    <form action="{{ route('teachers.delete', $teacher->id) }}" style="display:contents" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger btn-sm btnDelete"><i class="fa-solid fa-trash"></i></button>
+                                    </form>
+                                </td>
                             </tr>
+
                         @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
-    </section>        
+    </section>   
+
 @endsection
 
 <script type="module">
@@ -68,7 +71,7 @@
             event.preventDefault();
             const form = $(this).closest('form');
             Swal.fire({
-                title: "¿Desea eliminar el registro?",
+                title: "¿Desea eliminar el profesor?",
                 text: "No podrá revertirlo",
                 icon: "question",
                 showCancelButton: true,

@@ -27,17 +27,18 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th> Nombre </th>
-                            <th> Apellido </th>
+                            <th> Nombres </th>
+                            <th> Apellidos </th>
                             <th> Email </th>
-                            <th> Fecha Nacimiento </th>
-                            <th> Genero </th>
+                            <th> Fecha de Nacimiento </th>
+                            <th> Género </th>
                             <th> Dirección </th>
                             <th> Celular </th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($students as $student)
+
                             <tr>
                                 <td> {{ $student->first_name }} </td>
                                 <td> {{ $student->last_name }} </td>

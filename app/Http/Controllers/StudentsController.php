@@ -146,9 +146,9 @@ class StudentsController extends Controller
 
     }
 
-    public function Delete($id) {
+    public function delete($id) {
 
-        try{
+        try {
             $student = Student::find($id);
 
             if(empty($student)) {
