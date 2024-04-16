@@ -4,6 +4,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\TeachersController;
+use App\Http\Controllers\GradesController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -47,3 +49,12 @@ Route::get('/subjects/edit/{id}', [SubjectsController::class, 'edit'])->name('su
 Route::post('/subjects/store', [SubjectsController::class, 'store'])->name('subjects.store');
 Route::put('/subjects/update', [SubjectsController::class, 'update'])->name('subjects.update');
 Route::delete('/subjects/delete/{id}', [SubjectsController::class, 'delete'])->name('subjects.delete');
+
+##Grades
+Route::get('/grades', [GradesController::class, 'index'])->name('grades.index');
+Route::get('/grades/create', [GradesController::class, 'create'])->name('grades.create');
+Route::get('/grades/edit/{id}', [GradesController::class, 'edit'])->name('grades.edit');
+
+Route::post('/grades/store', [GradesController::class, 'store'])->name('grades.store');
+Route::put('/grades/update', [GradesController::class, 'update'])->name('grades.update');
+Route::delete('/grades/delete/{id}', [GradesController::class, 'delete'])->name('grades.delete');
