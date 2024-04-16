@@ -83,13 +83,13 @@ class SubjectsController extends Controller
         $teacherSelected = Teacher::find($subject->teacher_id);
         if(empty($teacherSelected)){
 
-            abort(404, "El profesor con id $$subject->teacher_id no existe");
+            abort(404, "El profesor con id '$subject->teacher_id' no existe");
         }
 
         $classroomSelected = Classroom::find($subject->classroom_id);
         if(empty($classroomSelected)){
 
-            abort(404, "El aula con id $$subject->classroom_id no existe");
+            abort(404, "El aula con id '$subject->classroom_id' no existe");
         }
 
         return view('subjects.edit', ['subject' => $subject, 'classrooms' => $classrooms, 'teachers' => $teachers, 'classroomSelected' => $classroomSelected, 'teacherSelected' => $teacherSelected]);
