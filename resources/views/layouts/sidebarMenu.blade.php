@@ -93,6 +93,16 @@
             <div data-i18n="Without navbar">Profesores</div>
           </a>
         </li>
+        <li class="menu-item">
+          <a href="{{ route("classrooms.index" )}}" class="menu-link">
+            <div data-i18n="Without navbar">Aulas</div>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="{{ route("subjects.index" )}}" class="menu-link">
+            <div data-i18n="Without menu">Asignaturas</div>
+          </a>
+        </li>
       </ul>
     </li>
 
