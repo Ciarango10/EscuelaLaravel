@@ -124,6 +124,7 @@ class ClassroomsController extends Controller
 
             Session::flash('message', ['content' => 'Aula eliminada con éxito', 'type' => 'success']);
             return redirect()->action([ClassroomsController::class, 'index']);
+            
         }catch(Exception $ex) {
 
             Log::error($ex);
