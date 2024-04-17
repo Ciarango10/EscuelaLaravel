@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Grade;
-use App\Models\Subject;
+use App\Models\Enrollment;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -13,39 +13,35 @@ class GradesController extends Controller
 {
     public function index() {
         $grades = Grade::all();
-        $subjects = Subject::all();
+        $enrollments = Enrollment::all();
 
-        return view("grades.index", ['grades' => $grades, 'subjects' => $subjects]);
+        return view("grades.index", ['grades' => $grades, 'enrollments' => $enrollments]);
     }
 
     public function create() {
         $grades = Grade::all();
-        $subjects = Subject::all();
+        $enrollments = Enrollment::all();
 
-        return view("grades.create", ['subjects' => $subjects]);
+        return view("grades.create", ['$grades'=> $grades, 'enrollments' => $enrollments]);
     }
 
     public function store(Request $request) {
 
         // Validación de los datos recibidos en la solicitud
         $validator = Validator::make($request->all(), [
-            'student_name' => 'required|max:25',
             'grade' => 'required',
-            'subject_id' => 'not_in:0',
+            'enrollment_id' => 'not_in:0',
         ],
         [
-            'student_name.required' => 'El nombre es obligatorio.',
-            'name.max' => 'El nombre no puede ser mayor a :max caracteres.',
             'grade.required' => 'El grado es obligatorio.',
-            'subject_id.not_in' => 'La asignatura es requerida.'
+            'enrollment_id.not_in' => 'La matricula es requerida.'
 
         ])->validate();
 
         try {  
             $grade = new Grade();
-            $grade->name = $request->name;
             $grade->grade = $request->grade;
-            $grade->subject_id = $request->subject_id;
+            $grade->enrollment_id = $request->enrollment_id;
 
             $grade->save();
     
@@ -63,33 +59,34 @@ class GradesController extends Controller
 
     public function edit($id) {
         $grade = Grades::find($id);
-        $subjects = Subject::all();
+        $enrollments = Enrollment::all();
 
         if(empty($grade)) {
             Session::flash('message', ['content' => "La nota con id '$id' no existe", 'type' => 'error']);
             return redirect()->action([GradesController::class, 'index']);
         }
 
-        $subjectSelected = Subject::find($grade->subject_id);
-        if(empty($subjectSelected)){
+        $enrollmentSelected = Enrollment::find($grade->enrollment_id);
+        if(empty($enrollmentSelected)){
 
-            abort(404, "La asignatura con id '$grade->subject_id)' no existe");
+            abort(404, "La matricula con id '$grade->enrollment_id)' no existe");
         }
 
-        return view("grades.edit", ['grade' => $grade, 'subjetcs' => $subjects]);    }
+        return view("grades.edit", ['grade' => $grade, 'enrollments' => $enrollments, 'enrollmentSelected' => $enrollmentSelected]);    }
 
     public function update(Request $request) {
     
         $validator = Validator::make($request->all(), [
-            'student_name' => 'required|max:25',
+            'grade_id' => 'required|numeric|min:1',
             'grade' => 'required',
-            'subject_id' => 'not_in:0',
+            'enrollment_id' => 'not_in:0',
         ],
         [
-            'student_name.required' => 'El nombre es obligatorio.',
-            'name.max' => 'El nombre no puede ser mayor a :max caracteres.',
+            'grade_id.required' => 'El grade_id es obligatorio.',
+            'grade_id.numeric' => 'El grade_id debe ser un número.',
+            'grade_id.min' => 'El grade_id no puede ser menor a :min.',
             'grade.required' => 'El grado es obligatorio.',
-            'subject_id.not_in' => 'La asignatura es requerida.'
+            'enrollment_id.not_in' => 'La matricula es requerida.'
 
         ])->validate();
 
@@ -102,11 +99,11 @@ class GradesController extends Controller
                 return redirect()->action([GradesController::class, 'index']);
             }
 
-            $subject->name = $request->name;
-            $subject->grade = $request->grade;
-            $subject->subject_id = $request->subject_id;
+            $grade->grade_id = $request->grade_id;
+            $grade->grade = $request->grade;
+            $grade->enrollment_id = $request->enrollment_id;
 
-            $subject->save();
+            $grade->save();
 
             Session::flash('message', ['content' => 'Nota editada con éxito', 'type' => 'success']);
             return redirect()->action([GradesController::class, 'index']);
@@ -129,10 +126,10 @@ class GradesController extends Controller
                 Session::flash('message', ['content' => "La nota con id '$id' no existe", 'type' => 'error']);
             }
 
-            $subject->delete();
+            $grade->delete();
 
             Session::flash('message', ['content' => 'Nota eliminada con éxito', 'type' => 'success']);
-            return redirect()->action([SubjectsController::class, 'index']);
+            return redirect()->action([GradesController::class, 'index']);
 
         }catch(Exception $ex) {
 

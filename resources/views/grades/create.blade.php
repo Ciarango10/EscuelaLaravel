@@ -25,18 +25,14 @@
                     @csrf
                     <div class="col-md-12">
                         <div class="form-floating mb-3">
-                            <input name="name" id="student_name" class="form-control" placeholder="Estudiante">
-                            <label for="name">Estudiante</label>
+                            <input type="number" name="grade" id="grade" class="form-control" placeholder="Calificación">
+                            <label for="grade">Calificación</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="number" name="grade" id="grade" class="form-control" placeholder="Calificacion">
-                            <label for="grade">Calificacion</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <select class="form-select" name="subject_id">
+                            <select class="form-select" name="enrollment_id">
                                 <option selected value="0">Seleccione</option>
-                                @foreach ($subjects as $subject)                 
-                                    <option value="{{ $subject->id }}">{{ $subject->student_name }}</option>
+                                @foreach ($enrollments as $enrollment)                 
+                                    <option value="{{ $enrollment->subject_id }}">{{ $enrollment->subject_id }}</option>
                                 @endforeach
                             </select>
                             <label for="subject_id">Asignatura</label>

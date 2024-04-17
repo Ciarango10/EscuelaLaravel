@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
-            $table->string('student_name');
             $table->float('grade');
-            $table->unsignedBigInteger('subject_id');
-            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->unsignedBigInteger('enrollment_id');
+            $table->foreign('enrollment_id')->references('id')->on('enrollments')->onDelete('cascade');
             $table->boolean('is_hidden')->default(false);
             $table->timestamps();
         });

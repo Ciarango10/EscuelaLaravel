@@ -27,23 +27,19 @@
                     <input type="hidden" name="grade_id" value="{{ $grade->id }}">
                     <div class="col-md-12">
                         <div class="form-floating mb-3">
-                            <input name="name" id="studen_name" class="form-control" placeholder="Estudiante" value="{{ $grade->studen_name }}">
-                            <label for="name">Estudiante</label>
-                        </div>
-                        <div class="form-floating mb-3">
                             <input type="number" name="grade" id="grade" class="form-control" placeholder="Calificacion" value="{{ $grade->grade }}" >
                             <label for="grade">Grado</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <select class="form-select" name="subject_id">
-                                <option selected value="{{ $subjectSelected->id }}">{{ $subjectSelected->student_name }}</option>
-                                @foreach ($subjects as $subject)  
-                                    @if ($subjectSelected->id != $subject->id)              
-                                        <option value="{{ $subject->id }}">{{ $subject->student_name }}</option>
+                            <select class="form-select" name="enrollment_id">
+                                <option selected value="{{ $enrollmentSelected->id }}">{{ $enrollmentSelected->enrollment_id }}</option>
+                                @foreach ($enrollments as $enrollment)  
+                                    @if ($enrollmentSelected->id != $enrollment->id)              
+                                        <option value="{{ $enrollment->id }}">{{ $enrollment->id }}</option>
                                     @endif
                                 @endforeach
                             </select>
-                            <label for="subject_id">Asignatura</label>
+                            <label for="enrollment_id">Matricula</label>
                         </div>
                     </div>
                     <div class="text-center">

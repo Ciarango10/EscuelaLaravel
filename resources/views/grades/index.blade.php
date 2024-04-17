@@ -28,21 +28,23 @@
                     <thead>
                         <tr>
                             <th> Estudiante </th>
-                            <th> Calificacion </th>
                             <th> Asignatura </th>
+                            <th> Año Académico </th>
+                            <th> Calificación </th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($grades as $grade)
 
                             <tr>
-                                <td> {{ $grade->student_name }} </td>
-                                <td> {{ $grade->grade_level }} </td>
-                                @foreach ($subjects as $subject)
-                                    @if($subject->id == $grade->subject_id) 
-                                        <td>{{ $grade->student_name }}</td>
+                                @foreach ($enrollments as $enrollment)
+                                    @if($enrollment->id == $grade->enrollment_id) 
+                                        <td>{{ $enrollment->student_id }}</td>
+                                        <td>{{ $enrollment->subject_id }}</td>
+                                        <td>{{ $enrollment->academic_year }}</td>
                                     @endif
                                 @endforeach
+                                <td> {{ $grade->grade }} </td>
                                 <td>
                                     <a href="{{ route('grades.edit', $grade->id) }}" class="btn btn-sm btn-warning"><i class="fa-solid fa-pencil"></i></a>
 
