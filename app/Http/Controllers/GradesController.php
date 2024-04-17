@@ -33,7 +33,7 @@ class GradesController extends Controller
             'enrollment_id' => 'not_in:0',
         ],
         [
-            'grade.required' => 'El grado es obligatorio.',
+            'grade.required' => 'La nota es requerida.',
             'enrollment_id.not_in' => 'La matricula es requerida.'
 
         ])->validate();
@@ -58,7 +58,7 @@ class GradesController extends Controller
     }
 
     public function edit($id) {
-        $grade = Grades::find($id);
+        $grade = Grade::find($id);
         $enrollments = Enrollment::all();
 
         if(empty($grade)) {
@@ -99,7 +99,6 @@ class GradesController extends Controller
                 return redirect()->action([GradesController::class, 'index']);
             }
 
-            $grade->grade_id = $request->grade_id;
             $grade->grade = $request->grade;
             $grade->enrollment_id = $request->enrollment_id;
 

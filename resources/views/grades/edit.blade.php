@@ -28,7 +28,7 @@
                     <div class="col-md-12">
                         <div class="form-floating mb-3">
                             <input type="number" name="grade" id="grade" class="form-control" placeholder="Calificacion" value="{{ $grade->grade }}" >
-                            <label for="grade">Grado</label>
+                            <label for="grade">Nota</label>
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select" name="enrollment_id">
