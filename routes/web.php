@@ -31,14 +31,6 @@ Route::post('/students/store', [StudentsController::class, 'store'])->name('stud
 Route::put('/students/update', [StudentsController::class, 'update'])->name('students.update');
 Route::delete('/students/delete/{id}', [StudentsController::class, 'delete'])->name('students.delete');
 
-#Registration
-Route::get('/Registration', [RegistrationController::class, 'Index'])->name('Registration.index');
-Route::get('/Registration/create', [RegistrationController::class, 'create'])->name('Registration.create');
-Route::get('/Registration/edit{id}', [RegistrationController::class, 'edit'])->name('Registration.edit');
-
-Route::post('/Registration/store', [StudentsController::class, 'store'])->name('Registration.store');
-Route::put('/Registration/update', [StudentsController::class, 'update'])->name('Registration.update');
-Route::delete('/Registration/delete/{id}', [StudentsController::class, 'delete'])->name('Registration.delete');
 #Classrooms
 Route::get('/classrooms', [ClassroomsController::class, 'index'])->name('classrooms.index');
 Route::get('/classrooms/create', [ClassroomsController::class, 'create'])->name('classrooms.create');
@@ -56,3 +48,12 @@ Route::get('/subjects/edit/{id}', [SubjectsController::class, 'edit'])->name('su
 Route::post('/subjects/store', [SubjectsController::class, 'store'])->name('subjects.store');
 Route::put('/subjects/update', [SubjectsController::class, 'update'])->name('subjects.update');
 Route::delete('/subjects/delete/{id}', [SubjectsController::class, 'delete'])->name('subjects.delete');
+
+#Registrations
+Route::get('/Registration', [RegistrationController::class, 'Index'])->name('Registration.index');
+Route::get('/Registration/create', [RegistrationController::class, 'create'])->name('Registration.create');
+Route::get('/Registration/edit{id}', [RegistrationController::class, 'edit'])->name('Registration.edit');
+
+Route::post('/Registration/store', [StudentsController::class, 'store'])->name('Registration.store');
+Route::put('/Registration/update', [StudentsController::class, 'update'])->name('Registration.update');
+Route::delete('/Registration/delete/{id}', [StudentsController::class, 'delete'])->name('Registration.delete');

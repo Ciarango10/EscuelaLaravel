@@ -45,7 +45,7 @@
 <!-- Código de SweetAlert2 para mostrar mensajes de sesión flash -->
 @if (session()->has('message'))
     <script>
-        
+        const message = @json(session('message'));
         Swal.fire({
             icon: message.type,
             title: message.content
