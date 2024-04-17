@@ -103,6 +103,11 @@
             <div data-i18n="Without menu">Asignaturas</div>
           </a>
         </li>
+        <li class="menu-item">
+          <a href="{{ route("enrollments.index" )}}" class="menu-link">
+            <div data-i18n="Without menu">Matriculas</div>
+          </a>
+        </li>
       </ul>
     </li>
 

@@ -98,6 +98,7 @@ class SubjectsController extends Controller
     public function update(Request $request) {
     
         $validator = Validator::make($request->all(), [
+            'subject_id' => 'required|numeric|min:1',
             'name' => 'required|max:25',
             'grade_level' => 'required',
             'schedule' => 'required',
@@ -105,6 +106,9 @@ class SubjectsController extends Controller
             'classroom_id' => 'not_in:0',
         ],
         [
+            'subject_id.required' => 'El subject_id es obligatorio.',
+            'subject_id.numeric' => 'El subject_id debe ser un número.',
+            'subject_id.min' => 'El subject_id no puede ser menor a :min.',
             'name.required' => 'El nombre es obligatorio.',
             'name.max' => 'El nombre no puede ser mayor a :max caracteres.',
             'grade_level.required' => 'El grado es obligatorio.',

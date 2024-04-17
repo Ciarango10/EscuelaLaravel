@@ -1,7 +1,7 @@
 <?php
 use App\Http\Controllers\ClassroomsController;
+use App\Http\Controllers\EnrollmentsController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectsController;
 use App\Http\Controllers\TeachersController;
@@ -49,11 +49,11 @@ Route::post('/subjects/store', [SubjectsController::class, 'store'])->name('subj
 Route::put('/subjects/update', [SubjectsController::class, 'update'])->name('subjects.update');
 Route::delete('/subjects/delete/{id}', [SubjectsController::class, 'delete'])->name('subjects.delete');
 
-#Registrations
-Route::get('/Registration', [RegistrationController::class, 'Index'])->name('Registration.index');
-Route::get('/Registration/create', [RegistrationController::class, 'create'])->name('Registration.create');
-Route::get('/Registration/edit{id}', [RegistrationController::class, 'edit'])->name('Registration.edit');
+#Enrollments
+Route::get('/enrollments', [EnrollmentsController::class, 'index'])->name('enrollments.index');
+Route::get('/enrollments/create', [EnrollmentsController::class, 'create'])->name('enrollments.create');
+Route::get('/enrollments/edit/{id}', [EnrollmentsController::class, 'edit'])->name('enrollments.edit');
 
-Route::post('/Registration/store', [StudentsController::class, 'store'])->name('Registration.store');
-Route::put('/Registration/update', [StudentsController::class, 'update'])->name('Registration.update');
-Route::delete('/Registration/delete/{id}', [StudentsController::class, 'delete'])->name('Registration.delete');
+Route::post('/enrollments/store', [EnrollmentsController::class, 'store'])->name('enrollments.store');
+Route::put('/enrollments/update', [EnrollmentsController::class, 'update'])->name('enrollments.update');
+Route::delete('/enrollments/delete/{id}', [EnrollmentsController::class, 'delete'])->name('enrollments.delete');

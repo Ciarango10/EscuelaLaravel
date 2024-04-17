@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('registrations', function (Blueprint $table) {
+        Schema::create('enrollments', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name', 50);
-            $table->string('email_address')->unique();
-            $table->date('birth_date');
-            $table->string('gender',20);
-            $table->string('address',90);
-            $table->string('home_address',25);
-            $table->string('phone_number',25);
+            $table->integer('academic_year');
+            $table->unsignedBigInteger('student_id');
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->unsignedBigInteger('subject_id');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
             $table->boolean('is_hidden')->default(false);
             $table->timestamps();
         });
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('registrations');
+        Schema::dropIfExists('enrollments');
     }
 };
