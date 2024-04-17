@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Grade;
 use App\Models\Enrollment;
+use App\Models\Student;
+use App\Models\Subject;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -14,8 +16,11 @@ class GradesController extends Controller
     public function index() {
         $grades = Grade::all();
         $enrollments = Enrollment::all();
+        $students = Student::all();
+        $subjects = Subject::all();
 
-        return view("grades.index", ['grades' => $grades, 'enrollments' => $enrollments]);
+
+        return view("grades.index", ['grades' => $grades, 'enrollments' => $enrollments, 'students' => $students, 'subjects' => $subjects]);
     }
 
     public function create() {
@@ -60,6 +65,8 @@ class GradesController extends Controller
     public function edit($id) {
         $grade = Grade::find($id);
         $enrollments = Enrollment::all();
+        $students = Student::all();
+        $subjects = Subject::all();
 
         if(empty($grade)) {
             Session::flash('message', ['content' => "La nota con id '$id' no existe", 'type' => 'error']);
@@ -72,7 +79,9 @@ class GradesController extends Controller
             abort(404, "La matricula con id '$grade->enrollment_id)' no existe");
         }
 
-        return view("grades.edit", ['grade' => $grade, 'enrollments' => $enrollments, 'enrollmentSelected' => $enrollmentSelected]);    }
+        return view("grades.edit", ['grade' => $grade, 'enrollments' => $enrollments, 'enrollmentSelected' => $enrollmentSelected, 'students' => $students, 'subjects' => $subjects]);  
+          
+    }
 
     public function update(Request $request) {
     
@@ -85,7 +94,7 @@ class GradesController extends Controller
             'grade_id.required' => 'El grade_id es obligatorio.',
             'grade_id.numeric' => 'El grade_id debe ser un número.',
             'grade_id.min' => 'El grade_id no puede ser menor a :min.',
-            'grade.required' => 'El grado es obligatorio.',
+            'grade.required' => 'La nota es requerida.',
             'enrollment_id.not_in' => 'La matricula es requerida.'
 
         ])->validate();

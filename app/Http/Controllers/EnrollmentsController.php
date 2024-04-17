@@ -152,4 +152,39 @@ class EnrollmentsController extends Controller
         }
 
     }
+
+    public function getEnrollmentData($id) {
+        $enrollment = Enrollment::find($id);
+
+        if(empty($enrollment)) {
+            Session::flash('message', ['content' => "La matricula con id '$id' no existe", 'type' => 'error']);
+            return redirect()->action([EnrollmentsController::class, 'index']);
+        }
+
+        $student = Student::find($enrollment->student_id);;
+
+        if(empty($student)) {
+            Session::flash('message', ['content' => "La estudiante con id '$id' no existe", 'type' => 'error']);
+            return redirect()->action([EnrollmentsController::class, 'index']);
+        }
+
+        $subject = Subject::find($enrollment->subject_id);
+
+        if(empty($subject)) {
+            Session::flash('message', ['content' => "La asignatura con id '$id' no existe", 'type' => 'error']);
+            return redirect()->action([EnrollmentsController::class, 'index']);
+        }
+    
+        return response()->json([
+            'student' => [
+                'first_name' => $student->first_name,
+                'last_name' => $student->last_name
+            ],
+            'subject' => [
+                'name' => $subject->name
+            ],
+            'academic_year' => $enrollment->academic_year
+        ]);
+    }
+    
 }
