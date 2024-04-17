@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\ClassroomsController;
+use App\Http\Controllers\EnrollmentsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\SubjectsController;
@@ -50,7 +51,7 @@ Route::post('/subjects/store', [SubjectsController::class, 'store'])->name('subj
 Route::put('/subjects/update', [SubjectsController::class, 'update'])->name('subjects.update');
 Route::delete('/subjects/delete/{id}', [SubjectsController::class, 'delete'])->name('subjects.delete');
 
-##Grades
+#Grades
 Route::get('/grades', [GradesController::class, 'index'])->name('grades.index');
 Route::get('/grades/create', [GradesController::class, 'create'])->name('grades.create');
 Route::get('/grades/edit/{id}', [GradesController::class, 'edit'])->name('grades.edit');
@@ -58,3 +59,12 @@ Route::get('/grades/edit/{id}', [GradesController::class, 'edit'])->name('grades
 Route::post('/grades/store', [GradesController::class, 'store'])->name('grades.store');
 Route::put('/grades/update', [GradesController::class, 'update'])->name('grades.update');
 Route::delete('/grades/delete/{id}', [GradesController::class, 'delete'])->name('grades.delete');
+
+#Enrollments
+Route::get('/enrollments', [EnrollmentsController::class, 'index'])->name('enrollments.index');
+Route::get('/enrollments/create', [EnrollmentsController::class, 'create'])->name('enrollments.create');
+Route::get('/enrollments/edit/{id}', [EnrollmentsController::class, 'edit'])->name('enrollments.edit');
+
+Route::post('/enrollments/store', [EnrollmentsController::class, 'store'])->name('enrollments.store');
+Route::put('/enrollments/update', [EnrollmentsController::class, 'update'])->name('enrollments.update');
+Route::delete('/enrollments/delete/{id}', [EnrollmentsController::class, 'delete'])->name('enrollments.delete');

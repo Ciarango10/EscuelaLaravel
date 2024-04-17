@@ -71,11 +71,15 @@ class ClassroomsController extends Controller
     public function update(Request $request) {
     
         $validator = Validator::make($request->all(), [
+            'classroom_id' => 'required|numeric|min:1',
             'code' => 'required|max:10',
             'capacity' => 'required',
             'location' => 'required|max:30'
         ],
         [
+            'classroom_id.required' => 'El classroom_id es obligatorio.',
+            'classroom_id.numeric' => 'El classroom_id debe ser un número.',
+            'classroom_id.min' => 'El classroom_id no puede ser menor a :min.',
             'code.required' => 'El código del aula es obligatorio.',
             'code.max' => 'El código del aula no puede ser mayor a :max caracteres.',
             'capacity.required' => 'La capacidad del aula es requerida.',

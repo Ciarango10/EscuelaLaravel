@@ -7,7 +7,7 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
-                <li class="breadcrumb-item active">Estudiantes</li>
+                <li class="breadcrumb-item active">Matriculas</li>
             </ol>
         </nav>
     </div>
@@ -16,9 +16,9 @@
         <div class="card">
             <div class="card-header py-3">
                 <div class="row">
-                    <h3 class="m-0 font-weight-bold text-primary col-md-11">Estudiantes</h3>
+                    <h3 class="m-0 font-weight-bold text-primary col-md-11">Matriculas</h3>
                     <div class="col-md-1">
-                        <a href="{{ route('students.create') }}" class="btn btn-primary"><i class="fa fa-add"></i></a>
+                        <a href="{{ route('enrollments.create') }}" class="btn btn-primary"><i class="fa fa-add"></i></a>
                     </div>
                 </div>
             </div>
@@ -27,30 +27,30 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th> Nombres </th>
-                            <th> Apellidos </th>
-                            <th> Email </th>
-                            <th> Fecha de Nacimiento </th>
-                            <th> Género </th>
-                            <th> Dirección </th>
-                            <th> Celular </th>
+                            <th> Año Académico </th>
+                            <th> Estudiante </th>
+                            <th> Asignatura </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($students as $student)
+                        @foreach ($enrollments as $enrollment)
 
                             <tr>
-                                <td> {{ $student->first_name }} </td>
-                                <td> {{ $student->last_name }} </td>
-                                <td> {{ $student->email }} </td>
-                                <td> {{ $student->date_of_birth }} </td>
-                                <td> {{ $student->gender }} </td>
-                                <td> {{ $student->address }} </td>
-                                <td> {{ $student->phone_number }} </td>
+                                <td> {{ $enrollment->academic_year }} </td>
+                                @foreach ($students as $student)
+                                    @if($student->id == $enrollment->student_id) 
+                                        <td>{{ $student->first_name }} {{ $student->last_name }}</td>
+                                    @endif
+                                @endforeach
+                                @foreach ($subjects as $subject)
+                                    @if($subject->id == $enrollment->subject_id) 
+                                        <td>{{ $subject->name }}</td>
+                                    @endif
+                                @endforeach
                                 <td>
-                                    <a href="{{ route('students.edit', $student->id) }}" class="btn btn-sm btn-warning"><i class="fa-solid fa-pencil"></i></a>
+                                    <a href="{{ route('enrollments.edit', $enrollment->id) }}" class="btn btn-sm btn-warning"><i class="fa-solid fa-pencil"></i></a>
 
-                                    <form action="{{ route('students.delete', $student->id) }}" style="display:contents" method="POST">
+                                    <form action="{{ route('enrollments.delete', $enrollment->id) }}" style="display:contents" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger btn-sm btnDelete"><i class="fa-solid fa-trash"></i></button>
@@ -76,7 +76,7 @@
             event.preventDefault();
 
             Swal.fire({
-                title: "¿Desea eliminar el estudiante?",
+                title: "¿Desea eliminar la matricula?",
                 text: "No podrá revertirlo",
                 icon: "question",
                 showCancelButton: true,
