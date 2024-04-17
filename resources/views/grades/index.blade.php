@@ -39,8 +39,16 @@
                             <tr>
                                 @foreach ($enrollments as $enrollment)
                                     @if($enrollment->id == $grade->enrollment_id) 
-                                        <td>{{ $enrollment->student_id }}</td>
-                                        <td>{{ $enrollment->subject_id }}</td>
+                                        @foreach($students as $student)
+                                            @if($enrollment->student_id == $student->id)
+                                                <td>{{ $student->first_name }} {{ $student->last_name }}</td>
+                                            @endif
+                                        @endforeach
+                                        @foreach($subjects as $subject)
+                                            @if($enrollment->subject_id == $subject->id)
+                                                <td>{{ $subject->name }}</td>
+                                            @endif
+                                        @endforeach
                                         <td>{{ $enrollment->academic_year }}</td>
                                     @endif
                                 @endforeach
