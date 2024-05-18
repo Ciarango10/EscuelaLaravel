@@ -13,12 +13,24 @@ use Illuminate\Support\Facades\Validator;
 
 class SubjectsController extends Controller
 {
-    public function index() {
-        $subjects = Subject::all();
-        $teachers = Teacher::all();
+    public function index(Request $request) {
         $classrooms = Classroom::all();
+        $teachers = Teacher::all();
 
-        return view("subjects.index", ['subjects' => $subjects, 'teachers' => $teachers, 'classrooms' => $classrooms]);
+        $filter = $request->filter;
+
+        if(!empty($request->records_per_page)) {
+            $request->records_per_page = $request->records_per_page <= env('PAGINATION_MAX_SIZE')
+                ? $request->records_per_page
+                :  env('PAGINATION_MAX_SIZE');
+        } else {
+            $request->records_per_page = env('PAGINATION_DEFAULT_SIZE');
+        }
+
+        $subjects = Subject::where('name', 'LIKE', "%$filter%")
+                                ->paginate($request->records_per_page);
+
+        return view("subjects.index", ['subjects' => $subjects, 'teachers' => $teachers, 'classrooms' => $classrooms, 'data' => $request]);
     }
 
     public function create() {

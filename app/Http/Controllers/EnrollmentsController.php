@@ -13,12 +13,24 @@ use Illuminate\Support\Facades\Validator;
 
 class EnrollmentsController extends Controller
 {
-    public function index() {
-        $enrollments = Enrollment::all();
+    public function index(Request $request) {
         $students = Student::all();
         $subjects = Subject::all();
 
-        return view("enrollments.index", ['enrollments' => $enrollments, 'students' => $students, 'subjects' => $subjects]);
+        $filter = $request->filter;
+
+        if(!empty($request->records_per_page)) {
+            $request->records_per_page = $request->records_per_page <= env('PAGINATION_MAX_SIZE')
+                ? $request->records_per_page
+                :  env('PAGINATION_MAX_SIZE');
+        } else {
+            $request->records_per_page = env('PAGINATION_DEFAULT_SIZE');
+        }
+
+        $enrollments = Enrollment::where('academic_year', 'LIKE', "%$filter%")
+                                ->paginate($request->records_per_page);
+
+        return view("enrollments.index", ['enrollments' => $enrollments, 'students' => $students, 'subjects' => $subjects, 'data' => $request]);
     }
 
     public function create() {

@@ -13,14 +13,25 @@ use Illuminate\Support\Facades\Validator;
 
 class GradesController extends Controller
 {
-    public function index() {
-        $grades = Grade::all();
+    public function index(Request $request) {
         $enrollments = Enrollment::all();
         $students = Student::all();
         $subjects = Subject::all();
 
+        $filter = $request->filter;
 
-        return view("grades.index", ['grades' => $grades, 'enrollments' => $enrollments, 'students' => $students, 'subjects' => $subjects]);
+        if(!empty($request->records_per_page)) {
+            $request->records_per_page = $request->records_per_page <= env('PAGINATION_MAX_SIZE')
+                ? $request->records_per_page
+                :  env('PAGINATION_MAX_SIZE');
+        } else {
+            $request->records_per_page = env('PAGINATION_DEFAULT_SIZE');
+        }
+
+        $grades = Grade::where('grade', 'LIKE', "%$filter%")
+                                ->paginate($request->records_per_page);
+
+        return view("grades.index", ['grades' => $grades, 'enrollments' => $enrollments, 'students' => $students, 'subjects' => $subjects, 'data' => $request]);
     }
 
     public function create() {

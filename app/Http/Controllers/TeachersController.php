@@ -11,10 +11,23 @@ use Illuminate\Support\Facades\Validator;
 
 class TeachersController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $teachers = Teacher ::all();
-        return view('teachers.index',['teachers' => $teachers]);
+        $filter = $request->filter;
+
+        if(!empty($request->records_per_page)) {
+            $request->records_per_page = $request->records_per_page <= env('PAGINATION_MAX_SIZE')
+                ? $request->records_per_page
+                :  env('PAGINATION_MAX_SIZE');
+        } else {
+            $request->records_per_page = env('PAGINATION_DEFAULT_SIZE');
+        }
+
+        $teachers = Teacher::where('first_name', 'LIKE', "%$filter%")
+                                ->orWhere('last_name', 'LIKE', "%$filter%")
+                                ->paginate($request->records_per_page);
+                                
+        return view('teachers.index',['teachers' => $teachers, 'data' => $request]);
     }
     
     public function create(){

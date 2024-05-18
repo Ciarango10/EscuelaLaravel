@@ -12,9 +12,22 @@ use Illuminate\Support\Facades\Validator;
 
 class StudentsController extends Controller
 {
-    public function index() {
-        $students = Student::all();
-        return view("students.index", ['students' => $students]);
+    public function index(Request $request) {
+        $filter = $request->filter;
+
+        if(!empty($request->records_per_page)) {
+            $request->records_per_page = $request->records_per_page <= env('PAGINATION_MAX_SIZE')
+                ? $request->records_per_page
+                :  env('PAGINATION_MAX_SIZE');
+        } else {
+            $request->records_per_page = env('PAGINATION_DEFAULT_SIZE');
+        }
+
+        $students = Student::where('first_name', 'LIKE', "%$filter%")
+                                ->orWhere('last_name', 'LIKE', "%$filter%")
+                                ->paginate($request->records_per_page);
+
+        return view("students.index", ['students' => $students, 'data' => $request]);
     }
 
     public function create() {

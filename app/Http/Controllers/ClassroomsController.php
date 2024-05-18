@@ -15,19 +15,17 @@ class ClassroomsController extends Controller
         $filter = $request->filter;
 
         if(!empty($request->records_per_page)) {
-
             $request->records_per_page = $request->records_per_page <= env('PAGINATION_MAX_SIZE')
-                                                                    ? $request->records_per_page
-                                                                    :  env('PAGINATION_MAX_SIZE');
+                ? $request->records_per_page
+                :  env('PAGINATION_MAX_SIZE');
         } else {
-
             $request->records_per_page = env('PAGINATION_DEFAULT_SIZE');
         }
 
         $classrooms = Classroom::where('code', 'LIKE', "%$filter%")
                                 ->paginate($request->records_per_page);
 
-        return view('classroom.index', ['classroms' => $classrooms,
+        return view('classrooms.index', ['classrooms' => $classrooms,
                                     'data' => $request]);
 
     }

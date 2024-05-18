@@ -27,7 +27,7 @@
                 <form class="navbar-search" method="GET" action="{{ route('classrooms.index')}}">
                     <div class="row mt-3">
                         <div class="col-md-auto">
-                            <select class="form-select bg-light border-0 small" data-width="100%" value="{{ $data->records_per_page }}" name="records_per_page">
+                            <select class="form-select bg-light" data-width="100%" value="{{ $data->records_per_page }}" name="records_per_page">
                                 <option {{ $data->records_per_page == 2 ? 'selected' : '' }} value="2">2</option>
                                 <option {{ $data->records_per_page == 10 ? 'selected' : '' }} value="10">10</option>
                                 <option {{ $data->records_per_page == 15 ? 'selected' : '' }} value="15">15</option>
@@ -38,11 +38,11 @@
                         <div class="col-md-11">
                             <div class="input-group mb-3">
  
-                                <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar.." aria-label="Search" name="filter" value="{{ $data->filter }}">
+                                <input type="text" class="form-control" placeholder="Buscar.." aria-label="Search" name="filter" value="{{ $data->filter }}">
  
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">
-                                        <i class="bi bi-search"></i>
+                                        <i class="bx bx-search-alt"></i>
                                     </button>
                                 </div>
                             </div>
@@ -80,6 +80,12 @@
                     </tbody>
                 </table>
                 
+                <nav class="mt-2" aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        {{ $classrooms->appends(request()->except('page'))->links('vendor.pagination.custom') }}
+                    </ul>
+                </nav>
+
             </div>
         </div>
     </section>
