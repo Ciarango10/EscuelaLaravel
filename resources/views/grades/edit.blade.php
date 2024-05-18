@@ -31,8 +31,6 @@
                             <label for="grade">Nota</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <select class="form-select" name="enrollment_id">
-                                <option selected value="{{ $enrollmentSelected->id }}">{{ $enrollmentSelected->enrollment_id }}</option>
                             <select class="form-select" name="enrollment_id" id="enrollment_id">
                                 <option selected value="{{ $enrollmentSelected->id }}">{{ $enrollmentSelected->id }}</option>
                                 @foreach ($enrollments as $enrollment)  
