@@ -34,6 +34,16 @@ class StudentSeeder extends Seeder
                 'phone_number' => '3129380812',
                 'is_hidden' => true
             ],
+            [
+                'first_name' => 'Alejandra ',
+                'last_name' => 'Sanchez',
+                'email' => 'jalesan@gmail.com',
+                'date_of_birth' => '2004-04-16',
+                'gender' => 'Femenino',
+                'address' => 'Edificio Malena',
+                'phone_number' => '3216246503',
+                'is_hidden' => true
+            ],
         ];
 
         DB::table('students')->insert($students);
