@@ -32,6 +32,15 @@ class TeacherSeeder extends Seeder
                 'phone' => '3183672890',
                 'is_hidden' => true
             ],
+            [
+                'first_name' => 'Maria',
+                'last_name' => 'Mosquera',
+                'email' => 'marianisajo@gmail.com',
+                'birthdate' => '1990-07-11',
+                'address' => 'Calle 1A #10-11',
+                'phone' => '3206989521',
+                'is_hidden' => true
+            ]
         ];
 
         DB::table('teachers')->insert($teachers);
