@@ -1,3 +1,9 @@
+@php
+
+  $currentUrl = Request::url();
+
+@endphp
+
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
   <div class="app-brand demo">
     <a href="index.html" class="app-brand-link">
@@ -68,7 +74,7 @@
 
   <ul class="menu-inner py-1">
     <!-- Dashboard -->
-    <li class="menu-item active">
+    <li class="menu-item {{ $currentUrl == route('home.index') ? 'active' : '' }}">
       <a href="{{ route("home.index") }}" class="menu-link">
         <i class="menu-icon tf-icons bx bx-home-circle"></i>
         <div data-i18n="Analytics">Home</div>
@@ -76,40 +82,40 @@
     </li>
 
     <!-- Layouts -->
-    <li class="menu-item">
+    <li class="menu-item {{ str_contains($currentUrl, 'students') || str_contains($currentUrl, 'teachers') || str_contains($currentUrl, 'classrooms') || str_contains($currentUrl, 'subjects') || str_contains($currentUrl, 'enrollments') || str_contains($currentUrl, 'grades') ? 'active open' : '' }}">
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons bx bx-layout"></i>
         <div data-i18n="Layouts">Entidades</div>
       </a>
 
       <ul class="menu-sub">
-        <li class="menu-item">
+        <li class="menu-item {{ str_contains($currentUrl, 'students') ? 'active' : '' }}">
           <a href="{{ route("students.index" )}}" class="menu-link">
             <div data-i18n="Without menu">Estudiantes</div>
           </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ str_contains($currentUrl, 'teachers') ? 'active' : '' }}">
           <a href="{{ route("teachers.index" )}}" class="menu-link">
             <div data-i18n="Without navbar">Profesores</div>
           </a>
         </li>
-        <li class="menu-item">
-          <a href="{{ route("classrooms.index" )}}" class="menu-link">
+        <li class="menu-item {{ str_contains($currentUrl, 'classrooms') ? 'active' : '' }}">
+          <a href="{{ route("classrooms.index") }}" class="menu-link">
             <div data-i18n="Without navbar">Aulas</div>
           </a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item {{ str_contains($currentUrl, 'subjects') ? 'active' : '' }}">
           <a href="{{ route("subjects.index" )}}" class="menu-link">
             <div data-i18n="Without menu">Asignaturas</div>
           </a>
         </li>
-        <li class="menu-item">   
+        <li class="menu-item {{ str_contains($currentUrl, 'enrollments') ? 'active' : '' }}">   
           <a href="{{ route("enrollments.index" )}}" class="menu-link">
             <div data-i18n="Without menu">Matriculas</div>
           </a>
         </li>
-        <li class="menu-item">
-          <a href="{{ route("grades.index" )}}" class="menu-link">
+        <li class="menu-item {{ str_contains($currentUrl, 'grades') ? 'active' : '' }}">
+          <a href="{{ route("grades.index" ) }}" class="menu-link">
             <div data-i18n="Without menu">Notas</div>
           </a>
         </li>
