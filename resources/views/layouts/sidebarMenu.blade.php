@@ -73,6 +73,7 @@
   <div class="menu-inner-shadow"></div>
 
   <ul class="menu-inner py-1">
+
     <!-- Dashboard -->
     <li class="menu-item {{ $currentUrl == route('home.index') ? 'active' : '' }}">
       <a href="{{ route("home.index") }}" class="menu-link">
@@ -89,36 +90,55 @@
       </a>
 
       <ul class="menu-sub">
-        <li class="menu-item {{ str_contains($currentUrl, 'students') ? 'active' : '' }}">
-          <a href="{{ route("students.index" )}}" class="menu-link">
-            <div data-i18n="Without menu">Estudiantes</div>
-          </a>
-        </li>
-        <li class="menu-item {{ str_contains($currentUrl, 'teachers') ? 'active' : '' }}">
-          <a href="{{ route("teachers.index" )}}" class="menu-link">
-            <div data-i18n="Without navbar">Profesores</div>
-          </a>
-        </li>
-        <li class="menu-item {{ str_contains($currentUrl, 'classrooms') ? 'active' : '' }}">
-          <a href="{{ route("classrooms.index") }}" class="menu-link">
-            <div data-i18n="Without navbar">Aulas</div>
-          </a>
-        </li>
-        <li class="menu-item {{ str_contains($currentUrl, 'subjects') ? 'active' : '' }}">
-          <a href="{{ route("subjects.index" )}}" class="menu-link">
-            <div data-i18n="Without menu">Asignaturas</div>
-          </a>
-        </li>
-        <li class="menu-item {{ str_contains($currentUrl, 'enrollments') ? 'active' : '' }}">   
-          <a href="{{ route("enrollments.index" )}}" class="menu-link">
-            <div data-i18n="Without menu">Matriculas</div>
-          </a>
-        </li>
+        
+        @if(\App\Helpers\RoleHelper::isAuthorized('Estudiantes.showStudents'))
+          <li class="menu-item {{ str_contains($currentUrl, 'students') ? 'active' : '' }}">
+            <a href="{{ route("students.index" )}}" class="menu-link">
+              <div data-i18n="Without menu">Estudiantes</div>
+            </a>
+          </li>
+        @endif
+
+        @if(\App\Helpers\RoleHelper::isAuthorized('Profesores.showTeachers'))
+          <li class="menu-item {{ str_contains($currentUrl, 'teachers') ? 'active' : '' }}">
+            <a href="{{ route("teachers.index" )}}" class="menu-link">
+              <div data-i18n="Without navbar">Profesores</div>
+            </a>
+          </li>
+        @endif
+
+        @if(\App\Helpers\RoleHelper::isAuthorized('Aulas.showClassrooms'))
+          <li class="menu-item {{ str_contains($currentUrl, 'classrooms') ? 'active' : '' }}">
+            <a href="{{ route("classrooms.index") }}" class="menu-link">
+              <div data-i18n="Without navbar">Aulas</div>
+            </a>
+          </li>
+        @endif
+
+        @if(\App\Helpers\RoleHelper::isAuthorized('Asignaturas.showSubjects'))
+          <li class="menu-item {{ str_contains($currentUrl, 'subjects') ? 'active' : '' }}">
+            <a href="{{ route("subjects.index" )}}" class="menu-link">
+              <div data-i18n="Without menu">Asignaturas</div>
+            </a>
+          </li>
+        @endif
+
+        @if(\App\Helpers\RoleHelper::isAuthorized('Matriculas.showEnrollments'))
+          <li class="menu-item {{ str_contains($currentUrl, 'enrollments') ? 'active' : '' }}">   
+            <a href="{{ route("enrollments.index" )}}" class="menu-link">
+              <div data-i18n="Without menu">Matriculas</div>
+            </a>
+          </li>
+        @endif
+
+        @if(\App\Helpers\RoleHelper::isAuthorized('Notas.showGrades'))
         <li class="menu-item {{ str_contains($currentUrl, 'grades') ? 'active' : '' }}">
           <a href="{{ route("grades.index" ) }}" class="menu-link">
             <div data-i18n="Without menu">Notas</div>
           </a>
         </li>
+        @endif
+
       </ul>
     </li>
 

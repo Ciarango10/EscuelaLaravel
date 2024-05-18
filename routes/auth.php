@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -17,10 +18,10 @@ Route::middleware('guest')->group(function () {
 
     // Route::post('register', [RegisteredUserController::class, 'store']);
 
-    Route::get('login', [AuthenticatedSessionController::class, 'create'])
+    Route::get('login', [AccountController::class, 'login'])
                 ->name('login');
 
-    Route::post('login', [AuthenticatedSessionController::class, 'store']);
+    Route::post('login', [AccountController::class, 'loginPost']);
 
     // Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
     //             ->name('password.request');
@@ -54,6 +55,6 @@ Route::middleware('auth')->group(function () {
 
     // Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+    Route::post('logout', [AccountController::class, 'logout'])
                 ->name('logout');
 });
