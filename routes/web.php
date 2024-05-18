@@ -13,7 +13,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/home', [HomeController::class, 'index'])
+Route::get('/', [HomeController::class, 'index'])
     ->name('home.index')
     ->middleware(AuthorizedMiddleware::class);
 
