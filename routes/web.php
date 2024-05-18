@@ -34,3 +34,6 @@ include('web/grades.php');
 
 #Enrollments
 include('web/enrollments.php');
+
+#Roles
+include('web/roles.php');
