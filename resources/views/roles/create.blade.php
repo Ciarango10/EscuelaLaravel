@@ -7,7 +7,7 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
-                <li class="breadcrumb-item active"><a href="{{ route('roles.index') }}">Roles</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('roles.index') }}">Roles</a></li>
                 <li class="breadcrumb-item active">Nuevo Rol</li>
             </ol>
         </nav>

@@ -27,7 +27,7 @@ class UserRoleSeeder extends Seeder
                                       ->get();
 
         $aulasRole = new Role();
-        $aulasRole->name = "Editor de aulas";
+        $aulasRole->name = "Editor de Aulas";
         $aulasRole->save();
 
         foreach($aulasPermissions as $permission) {
@@ -43,7 +43,7 @@ class UserRoleSeeder extends Seeder
                                       ->get();
 
         $matriculasRole = new Role();
-        $matriculasRole->name = "Editor de matriculas";
+        $matriculasRole->name = "Editor de Matriculas";
         $matriculasRole->save();
 
         foreach($matriculasPermissions as $permission) {

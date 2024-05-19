@@ -6,7 +6,7 @@
 
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
   <div class="app-brand demo">
-    <a href="index.html" class="app-brand-link">
+    <a href="{{ route("home.index") }}" class="app-brand-link">
       <span class="app-brand-logo demo">
         <svg
           width="25"
@@ -141,6 +141,15 @@
 
       </ul>
     </li>
+
+    @if(\App\Helpers\RoleHelper::isAuthorized('Roles.showRoles'))
+      <li class="menu-item {{ str_contains($currentUrl, 'roles') ? 'active' : '' }}">
+        <a href="{{ route("roles.index") }}" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-lock-alt"></i>
+          <div data-i18n="Analytics">Roles</div>
+        </a>
+      </li>
+    @endif
 
     <li class="menu-header small text-uppercase">
       <span class="menu-header-text">Pages</span>

@@ -22,7 +22,7 @@ Route::post('/roles/store', [RolesController::class, 'store'])
 Route::put('/roles/update', [RolesController::class, 'update'])
     ->name('roles.update')
     ->middleware(AuthorizedMiddleware::class . ':Roles.updateRoles');
-    
+
 Route::delete('/roles/delete/{id}', [RolesController::class, 'delete'])
     ->name('roles.delete')
     ->middleware(AuthorizedMiddleware::class . ':Roles.deleteRoles');

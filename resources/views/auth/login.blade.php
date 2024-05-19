@@ -225,14 +225,27 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     @if ($errors->any())
-        <script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                html: '<ul>@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>'
-            });
-        </script>
+      <script>
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        html: '<ul>@foreach ($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul>'
+      });
+      </script>
+    @endif
+
+    @if (session()->has('message'))
+      <script>
+      const message = @json(session('message'));
+      Swal.fire({
+        icon: message.type,
+        title: message.content
+      });
+      </script>
     @endif
 
   </body>
