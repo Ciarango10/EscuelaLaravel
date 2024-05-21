@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\RolePermission;
@@ -44,29 +43,46 @@ class RolesController extends Controller
     public function store(Request $request) {
 
         // Validación de los datos recibidos en la solicitud
-        $validator = Validator::make($request->all(), [
-            'role_id' => 'required',
-            'permission_id' => 'required',
+        Validator::make($request->all(), [
+
+            'name' => 'required|max:64',
+            'permissions' => 'required|json'
         ],
         [
-            'role_id.required' => 'El año académico es requerido.',
-            'permission_id.required' => 'El estudiante es requerido.',
+            'name.required' => 'El nombre es requerido.',
+            'name.max' => 'El nombre no puede ser mayor a :max carácteres.',
+            'permissions.required' => 'debe seleccionar al menos 1 permiso.',
+            'permissions.json' => 'el campo permissions tiene el formato incorrecto.',
         ])->validate();
 
-        try {  
-            $role = new Role();
-            $role->role_id = $request->role_id;
-            $role->permission_id = $request->permission_id;
+        try {
 
-            $role->save();
-    
+            DB::transaction(function() use ($request){
+
+                // Creación de rol
+                $role = new Role();
+                $role->name = $request->name;
+                $role->save();
+
+                // Crear la relación entreroles y permisos
+                $permissions = json_decode($request->permissions);
+
+                foreach($permissions as $permission) {
+
+                    $rolePermission = new RolePermission();
+                    $rolePermission->role_id = $role->id;
+                    $rolePermission->permission_id = $permission;
+                    $rolePermission->save();
+                }
+            });
+
             Session::flash('message', ['content' => 'Rol creado con éxito', 'type' => 'success']);
             return redirect()->action([RolesController::class, 'index']);
 
-        }catch(Exception $ex) {
+        } catch(Exception $ex){
 
             Log::error($ex);
-            Session::flash('message', ['content' => "Ha ocurrido un error", 'type' => 'error']);
+            Session::flash('message', ['content' => 'Ha ocurrido un error', 'type' => 'error']);
             return redirect()->back();
         }
         
@@ -107,38 +123,55 @@ class RolesController extends Controller
     }   
     
     public function update(Request $request) {
-    
-          // Validación de los datos recibidos en la solicitud
-          $validator = Validator::make($request->all(), [
+
+        Validator::make($request->all(), [
+
             'role_id' => 'required|exists:roles,id',
-            'permission_id' => 'required|exists:permissions,id',
+            'name' => 'required|max:64',
+            'permissions' => 'required|json'
         ],
         [
             'role_id.required' => 'El id del rol es requerido.',
-            'role_id.exists' => 'El id dado para el rol no existe',
-            'permission_id.required' => 'El id del permiso es requerido.',
-            'permission_id.exists' => 'El id dado para el permiso no existe',
-
+            'role_id.exists' => 'El id dado para el rol no existe.',
+            'name.required' => 'El nombre es requerido.',
+            'name.max' => 'El nombre no puede ser mayor a :max carácteres.',
+            'permissions.required' => 'debe seleccionar al menos 1 permiso.',
+            'permissions.json' => 'el campo permissions tiene el formato incorrecto.',
         ])->validate();
 
-
         try {
-            $role = Role::find($request->role_id);
-            $role->role_id = $request->role_id;
-            $role->permission_id = $request->permission_id;
 
-            $role->save();
+            DB::transaction(function() use ($request){
+
+                // Edición de rol
+                $role = Role::find($request->role_id);
+                $role->name = $request->name;
+                $role->save();
+
+                // Eliminación de permisos viejos
+                RolePermission::where('role_id', '=', $role->id)
+                              ->delete();
+
+                // Crear la relación entreroles y permisos
+                $permissions = json_decode($request->permissions);
+
+                foreach($permissions as $permission) {
+
+                    $rolePermission = new RolePermission();
+                    $rolePermission->role_id = $role->id;
+                    $rolePermission->permission_id = $permission;
+                    $rolePermission->save();
+                }
+            });
 
             Session::flash('message', ['content' => 'Rol actualizado con éxito', 'type' => 'success']);
             return redirect()->action([RolesController::class, 'index']);
-    
 
-        } catch(Exception $ex) {
-        
+        } catch(Exception $ex){
+
             Log::error($ex);
             Session::flash('message', ['content' => 'Ha ocurrido un error', 'type' => 'error']);
             return redirect()->back();
-
         }
 
     }
