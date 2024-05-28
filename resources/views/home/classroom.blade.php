@@ -2,13 +2,12 @@
 
 @section('content')
 
-
 <div class="pagetitle">
     <h1>Aula</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home.index') }}">Home</a></li>
-            <li class="breadcrumb-item active">Aula</li>
+            <li class="breadcrumb-item active">Ver Aula</li>
         </ol>
     </nav>
 </div>

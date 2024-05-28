@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="pagetitle">
-    <h1>Home</h1>
+    <h1>Módulos</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item active">Home</li>
