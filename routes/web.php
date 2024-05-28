@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Middleware\AuthorizedMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
@@ -13,9 +11,8 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [HomeController::class, 'index'])
-    ->name('home.index')
-    ->middleware(AuthorizedMiddleware::class);
+#Home
+include('web/home.php');
 
 #Teachers
 include('web/teachers.php');
