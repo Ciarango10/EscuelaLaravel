@@ -151,6 +151,15 @@
       </li>
     @endif
 
+    @if(\App\Helpers\RoleHelper::isAuthorized('Usuarios.showUsers'))
+      <li class="menu-item {{ str_contains($currentUrl, 'users') ? 'active' : '' }}">
+        <a href="{{ route("users.index") }}" class="menu-link">
+          <i class="menu-icon tf-icons bx bx-user"></i>
+          <div data-i18n="Analytics">Usuarios</div>
+        </a>
+      </li>
+    @endif
+
     <li class="menu-header small text-uppercase">
       <span class="menu-header-text">Pages</span>
     </li>

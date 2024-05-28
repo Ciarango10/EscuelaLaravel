@@ -37,3 +37,6 @@ include('web/enrollments.php');
 
 #Roles
 include('web/roles.php');
+
+#Users
+include('web/users.php');
