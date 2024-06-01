@@ -10,7 +10,7 @@
     <meta content="" name="keywords">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset("theme/img/favicon/favicon.ico") }}"/>
+    <link rel="icon" type="image/x-icon" href="{{ asset("theme/img/favicon/school-solid-24.png") }}"/>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
