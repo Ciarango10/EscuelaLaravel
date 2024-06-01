@@ -22,7 +22,7 @@ class UserRoleSeeder extends Seeder
         $adminRole->name = "Administrador";
         $adminRole->save();
 
-        // Classrooms role
+        // Classrooms manager role
         $aulasPermissions = Permission::where('module', '=', 'Aulas')
                                       ->get();
 
@@ -38,7 +38,7 @@ class UserRoleSeeder extends Seeder
             $rolePermission->save();
         }
 
-        // Enrollments role
+        // Enrollments manager role
         $matriculasPermissions = Permission::where('module', '=', 'Matriculas')
                                       ->get();
 
@@ -54,7 +54,7 @@ class UserRoleSeeder extends Seeder
             $rolePermission->save();
         }
 
-        // Grades role
+        // Grades manager role
         $notasPermissions = Permission::where('module', '=', 'Notas')
                                       ->get();
 
@@ -70,7 +70,7 @@ class UserRoleSeeder extends Seeder
             $rolePermission->save();
         }
 
-        // Students role
+        // Students manager role
         $estudiantesPermissions = Permission::where('module', '=', 'Estudiantes')
                                       ->get();
 
@@ -86,7 +86,36 @@ class UserRoleSeeder extends Seeder
             $rolePermission->save();
         }
 
-        // Subjects role
+        // Students role
+        $studentsGradesPermissions = Permission::where('name', '=', 'showGrades')
+                                        ->where('module', '=', 'Notas')
+                                        ->get();
+
+        $studentsSubjectsPermissions = Permission::where('name', '=', 'showSubjects')
+                                        ->where('module', '=', 'Asignaturas')
+                                        ->get();
+
+        $studentsRole = new Role();
+        $studentsRole->name = "Estudiante";
+        $studentsRole->save();
+
+        foreach($studentsGradesPermissions as $permission) {
+
+            $rolePermission = new RolePermission();
+            $rolePermission->role_id = $studentsRole->id;
+            $rolePermission->permission_id = $permission->id;
+            $rolePermission->save();
+        }
+
+        foreach($studentsSubjectsPermissions as $permission) {
+
+            $rolePermission = new RolePermission();
+            $rolePermission->role_id = $studentsRole->id;
+            $rolePermission->permission_id = $permission->id;
+            $rolePermission->save();
+        }
+
+        // Subjects manager role
         $asignaturasPermissions = Permission::where('module', '=', 'Asignaturas')
                                       ->get();
 
@@ -102,7 +131,7 @@ class UserRoleSeeder extends Seeder
             $rolePermission->save();
         }
 
-        // Teachers role
+        // Teachers manager role
         $profesoresPermissions = Permission::where('module', '=', 'Profesores')
                                       ->get();
 
@@ -118,20 +147,21 @@ class UserRoleSeeder extends Seeder
             $rolePermission->save();
         }
 
-        // // Teacher manager role
-        // $editorPermissions = $blogsPermissions->merge($seccionesPermissions);
+        // // Teachers role
+        $teachersGradesPermissions = Permission::where('module', '=', 'Notas')
+                                      ->get();
 
-        // $editorRole = new Role();
-        // $editorRole->name = "Editor de notas";
-        // $editorRole->save();
+        $teachersRole = new Role();
+        $teachersRole->name = "Profesor";
+        $teachersRole->save();
 
-        // foreach($editorPermissions as $permission) {
+        foreach($teachersGradesPermissions as $permission) {
 
-        //     $rolePermission = new RolePermission();
-        //     $rolePermission->role_id = $editorRole->id;
-        //     $rolePermission->permission_id = $permission->id;
-        //     $rolePermission->save();
-        // }
+            $rolePermission = new RolePermission();
+            $rolePermission->role_id = $teachersRole->id;
+            $rolePermission->permission_id = $permission->id;
+            $rolePermission->save();
+        }
 
         // Users
 
@@ -203,6 +233,26 @@ class UserRoleSeeder extends Seeder
         $user->email_verified_at = now();
         $user->password = Hash::make('1234');
         $user->role_id = $profesoresRole->id;
+        $user->save();
+
+        $user = new User();
+        $user->first_name = "Sara";
+        $user->last_name = "Castañeda";
+        $user->document = "88888";
+        $user->email = "sarita@yopmail.com";
+        $user->email_verified_at = now();
+        $user->password = Hash::make('1234');
+        $user->role_id = $studentsRole->id;
+        $user->save();
+
+        $user = new User();
+        $user->first_name = "Julian";
+        $user->last_name = "Castaño";
+        $user->document = "99999";
+        $user->email = "jc@yopmail.com";
+        $user->email_verified_at = now();
+        $user->password = Hash::make('1234');
+        $user->role_id = $teachersRole->id;
         $user->save();
     }
 }

@@ -69,7 +69,7 @@
                                 <td> {{ $subject->schedule }} </td>
                                 @foreach ($teachers as $teacher)
                                     @if($teacher->id == $subject->teacher_id) 
-                                        <td>{{ $teacher->first_name }}</td>
+                                        <td>{{ $teacher->first_name }} {{ $teacher->last_name }}</td>
                                     @endif
                                 @endforeach
                                 @foreach ($classrooms as $classroom)

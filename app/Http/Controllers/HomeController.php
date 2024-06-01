@@ -9,6 +9,7 @@ use App\Models\Student;
 use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
@@ -59,6 +60,8 @@ class HomeController extends Controller
 
     public function enrollment($id) {
 
+        $students = Student::all();
+        $subjects = Subject::all();
         $enrollment = Enrollment::find($id);
 
         if (empty($enrollment)) {
@@ -67,12 +70,17 @@ class HomeController extends Controller
             return redirect()->back();
         }
 
-        return view('home.enrollment', ['enrollment' => $enrollment]);
+        return view('home.enrollment', ['enrollment' => $enrollment, 'students' => $students, 'subjects' => $subjects]);
     }
 
     public function grade($id) {
-
+        $subjects = Subject::all();
+        $enrollments = Enrollment::with('grades')->get();
         $grade = Grade::find($id);
+        $averageGrades = DB::table('grades')
+                        ->select('enrollment_id', DB::raw('AVG(grade) as average_grade'))
+                        ->groupBy('enrollment_id')
+                        ->get();
 
         if (empty($grade)) {
 
@@ -80,7 +88,7 @@ class HomeController extends Controller
             return redirect()->back();
         }
 
-        return view('home.grade', ['grade' => $grade]);
+        return view('home.grade', ['grade' => $grade, 'subjects' => $subjects, 'enrollments' => $enrollments, 'averageGrades' => $averageGrades]);
     }
 
     public function student($id) {
@@ -97,7 +105,8 @@ class HomeController extends Controller
     }
 
     public function subject($id) {
-
+        $classrooms = Classroom::all();
+        $teachers = Teacher::all();
         $subject = Subject::find($id);
 
         if (empty($subject)) {
@@ -106,7 +115,7 @@ class HomeController extends Controller
             return redirect()->back();
         }
 
-        return view('home.subject', ['subject' => $subject]);
+        return view('home.subject', ['subject' => $subject, 'classrooms' => $classrooms, 'teachers' => $teachers]);
     }
 
     public function teacher($id) {

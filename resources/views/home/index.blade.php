@@ -49,24 +49,41 @@
         </div>
     @endif
 
-    @if(\App\Helpers\RoleHelper::isAuthorized('Notas.showGrades'))
+    @if(\App\Helpers\RoleHelper::isAuthorized('Notas.showGrades') && !\App\Helpers\RoleHelper::isAuthorized('Notas.updateGrades'))
         <div class="card shadow mb-4">
             <div class="card-body">
                 <h3 class="card-title">Notas</h3>
                 <div class="row">
-                @foreach ($grades as $grade)
+                @foreach ($enrollments as $enrollment)
                     <div class="col-md-5 m-2">
-                        @foreach ($enrollments as $enrollment)
-                            @foreach ($subjects as $subject)
-                                @foreach ($students as $student)
-                                    @if ($enrollment->id == $grade->enrollment_id && $subject->id == $enrollment->subject_id && $student->id == $enrollment->student_id)
-                                        <a href="{{ route('home.grade', $grade->id) }}" class="btn btn-outline-primary form-control">{{ $subject->name }} - {{ $student->first_name }} {{ $student->last_name }}</a>
-                                    @endif  
-                                @endforeach            
-                            @endforeach 
-                        @endforeach
+                        @foreach ($subjects as $subject)
+                            @if ($subject->id == $enrollment->subject_id)
+                                <a href="{{ route('home.grade', $enrollment->id) }}" class="btn btn-outline-primary form-control">{{ $subject->name }}</a>   
+                            @endif        
+                        @endforeach 
                     </div>
                 @endforeach
+                </div>             
+            </div>
+        </div>   
+    @endif
+
+    @if(\App\Helpers\RoleHelper::isAuthorized('Notas.updateGrades'))
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <h3 class="card-title">Notas</h3>
+                <div class="row">
+                    @foreach ($enrollments as $enrollment)
+                        <div class="col-md-5 m-2">
+                            @foreach ($subjects as $subject)
+                                @foreach ($students as $student)
+                                    @if ($subject->id == $enrollment->subject_id && $student->id == $enrollment->student_id)
+                                        <a href="{{ route('home.grade', $enrollment->id) }}" class="btn btn-outline-primary form-control">{{ $subject->name }}  - {{ $student->first_name }} {{ $student->last_name }}</a>   
+                                    @endif     
+                                @endforeach   
+                            @endforeach 
+                        </div>
+                    @endforeach
                 </div>             
             </div>
         </div>   

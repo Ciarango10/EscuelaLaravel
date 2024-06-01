@@ -40,10 +40,10 @@
                         </div>
                         <div class="form-floating mb-3">
                             <select class="form-select" name="teacher_id">
-                                <option selected value="{{ $teacherSelected->id }}">{{ $teacherSelected->first_name }}</option>
+                                <option selected value="{{ $teacherSelected->id }}">{{ $teacherSelected->first_name }} {{ $teacherSelected->last_name }}</option>
                                 @foreach ($teachers as $teacher)  
                                     @if ($teacherSelected->id != $teacher->id)              
-                                        <option value="{{ $teacher->id }}">{{ $teacher->first_name }}</option>
+                                        <option value="{{ $teacher->id }}">{{ $teacher->first_name }} {{ $teacher->last_name }}</option>
                                     @endif
                                 @endforeach
                             </select>
