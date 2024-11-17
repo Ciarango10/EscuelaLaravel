@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Validator;
 
 class ClassroomsController extends Controller
 {
+    // Definir una constante para el mensaje de error genérico
+    private const GENERIC_ERROR_MESSAGE = "Ha ocurrido un error";
+
     public function index(Request $request) {
         $filter = $request->filter;
 
@@ -65,7 +68,7 @@ class ClassroomsController extends Controller
         }catch(Exception $ex) {
 
             Log::error($ex);
-            Session::flash('message', ['content' => "Ha ocurrido un error", 'type' => 'error']);
+            Session::flash('message', ['content' => self::GENERIC_ERROR_MESSAGE, 'type' => 'error']);
             return redirect()->back();
         }
         
@@ -123,7 +126,7 @@ class ClassroomsController extends Controller
         }catch(Exception $ex) {
 
             Log::error($ex);
-            Session::flash('message', ['content' => "Ha ocurrido un error", 'type' => 'error']);
+            Session::flash('message', ['content' => self::GENERIC_ERROR_MESSAGE, 'type' => 'error']);
             return redirect()->back();
         }
 
@@ -146,7 +149,7 @@ class ClassroomsController extends Controller
         }catch(Exception $ex) {
 
             Log::error($ex);
-            Session::flash('message', ['content' => "Ha ocurrido un error", 'type' => 'error']);
+            Session::flash('message', ['content' => self::GENERIC_ERROR_MESSAGE, 'type' => 'error']);
             return redirect()->back();
         }
 

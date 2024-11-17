@@ -12,28 +12,28 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 #Home
-include('web/home.php');
+include 'web/home.php';
 
 #Teachers
-include('web/teachers.php');
+include 'web/teachers.php';
 
 #Students
-include('web/students.php');
+include 'web/students.php';
 
 #Classrooms
-include('web/classrooms.php');
+include 'web/classrooms.php';
 
 #Subjects
-include('web/subjects.php');
+include 'web/subjects.php';
 
 #Grades
-include('web/grades.php');
+include 'web/grades.php';
 
 #Enrollments
-include('web/enrollments.php');
+include 'web/enrollments.php';
 
 #Roles
-include('web/roles.php');
+include 'web/roles.php';
 
 #Users
-include('web/users.php');
+include 'web/users.php';
