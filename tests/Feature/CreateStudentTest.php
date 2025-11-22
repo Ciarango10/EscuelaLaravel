@@ -6,12 +6,13 @@ use App\Http\Middleware\AuthorizedMiddleware;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CreateStudentTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    #[Test]
     public function authenticated_user_can_create_student(): void
     {
         $user = User::factory()->create();
